@@ -22,7 +22,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
 
   header { padding: 60px 48px 40px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
   header::before { content: ''; position: absolute; top: -120px; right: -120px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(240,192,96,0.12) 0%, transparent 70%); pointer-events: none; }
@@ -51,7 +51,7 @@
   .stage-title-block { flex: 1; }
   .stage-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 12px; }
   .stage-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .stage-desc { color: var(--muted); font-size: 13px; margin-top: 6px; max-width: 680px; line-height: 1.6; }
+  .stage-desc { color: var(--muted); font-size: 14px; margin-top: 6px; max-width: 680px; line-height: 1.6; }
   .impact-badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; border: 1px solid; font-weight: 500; flex-shrink: 0; }
   .impact-high { color: #60f0a0; border-color: rgba(96,240,160,0.3); background: rgba(96,240,160,0.07); }
   .impact-medium { color: #f0c060; border-color: rgba(240,192,96,0.3); background: rgba(240,192,96,0.07); }
@@ -59,15 +59,20 @@
 
   .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 
-  .tech-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; position: relative; transition: border-color 0.2s, transform 0.2s; overflow: hidden; }
+  .tech-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; position: relative; transition: border-color 0.45s cubic-bezier(.2,.9,.2,1), transform 0.45s cubic-bezier(.2,.9,.2,1), box-shadow 0.45s cubic-bezier(.2,.9,.2,1), background-color 0.45s ease; overflow: hidden; cursor: pointer; transform-origin: center; }
   .tech-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--card-accent, var(--accent)); opacity: 0.6; }
-  .tech-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .tech-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--card-accent, var(--accent)) 12%, transparent), transparent 55%); opacity: 0; transition: opacity 0.45s ease; pointer-events: none; }
+  .tech-card:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-4px) scale(1.015); box-shadow: 0 16px 30px rgba(0,0,0,0.26); }
+  .tech-card:hover::after { opacity: 0.55; }
+  .tech-card:focus-visible { outline: 2px solid var(--card-accent, var(--accent)); outline-offset: 2px; }
+  .tech-card.focused { border-color: color-mix(in srgb, var(--card-accent, var(--accent)) 58%, #fff 8%); transform: translateY(-8px) scale(1.03); box-shadow: 0 22px 42px rgba(0,0,0,0.34), 0 0 0 1px color-mix(in srgb, var(--card-accent, var(--accent)) 35%, transparent); background: color-mix(in srgb, var(--card) 88%, var(--card-accent, var(--accent)) 12%); z-index: 4; }
+  .tech-card.focused::after { opacity: 0.85; }
 
   .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 12px; }
-  .card-name { font-weight: 600; font-size: 14px; color: #fff; line-height: 1.3; }
+  .card-name { font-weight: 600; font-size: 15px; color: #fff; line-height: 1.3; }
   .card-origin { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; flex-shrink: 0; padding-top: 2px; }
-  .card-desc { font-size: 12.5px; color: #9090b8; line-height: 1.65; margin-bottom: 14px; }
-  .card-example { background: rgba(255,255,255,0.03); border-left: 3px solid var(--card-accent, var(--accent)); border-radius: 0 6px 6px 0; padding: 9px 12px; font-size: 11.5px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+  .card-desc { font-size: 13.5px; color: #9090b8; line-height: 1.65; margin-bottom: 14px; }
+  .card-example { background: rgba(255,255,255,0.03); border-left: 3px solid var(--card-accent, var(--accent)); border-radius: 0 6px 6px 0; padding: 9px 12px; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
   .card-example strong { color: var(--text); font-weight: 500; }
   .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
   .tag { font-size: 10px; font-weight: 500; padding: 2px 9px; border-radius: 100px; background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.07); }
@@ -77,10 +82,10 @@
   .tag.risk { background: rgba(240,96,96,0.1); color: var(--accent5); border-color: rgba(240,96,96,0.2); }
 
   .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
-  .indonesia-fit { font-size: 11px; font-weight: 600; }
+  .indonesia-fit { font-size: 12px; font-weight: 600; }
   .fit-high { color: #60f0a0; }
   .fit-medium { color: #f0c060; }
-  .sales-lift { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .sales-lift { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
   .sales-lift span { color: var(--text); }
 
   .stage-1 .tech-card { --card-accent: #60c8f0; }
@@ -563,6 +568,7 @@
 <script>
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.nav-item');
+  const cards = document.querySelectorAll('.tech-card');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -573,6 +579,28 @@
     });
   }, { threshold: 0.25 });
   sections.forEach(s => observer.observe(s));
+
+  cards.forEach((card) => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-pressed', 'false');
+
+    const activateCard = () => {
+      cards.forEach((item) => {
+        const isActive = item === card;
+        item.classList.toggle('focused', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
+    };
+
+    card.addEventListener('click', activateCard);
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activateCard();
+      }
+    });
+  });
 </script>
 </body>
 </html>
